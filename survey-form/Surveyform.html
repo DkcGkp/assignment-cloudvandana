@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="Surveyform.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Custo
+            mer Survey Form</h2>
+        <form id="surveyForm">
+            <div class="nameInput">
+                <div class="name">
+
+                    <!-- Input For First Name -->
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="name">
+
+                    <!-- Input For Last Name -->
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+
+            <!-- Input For DOB -->
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="country">Country:</label>
+
+            <!-- Dropdown For Selection Of Country -->
+            <select id="country" name="country" required>
+                <option value="" disabled selected>Select a country</option>
+
+                <!-- List Of Country -->
+                <option value="us">India</option>
+                <option value="us">United States</option>
+                <option value="ca">Canada</option>
+                <option value="uk">United Kingdom</option>
+            </select>
+
+            <!-- Radio Button For Gender Selection -->
+            <label>Gender:</label>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label>
+
+            <label for="profession" style="display: flex;">Profession:</label>
+            <input type="text" id="profession" name="profession" required>
+
+            <!-- Input For Email-->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <!-- Input For Mobile Number -->
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" required>
+            <!-- Button For Submit/Reset Form -->
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </form>
+    </div>
+    </div>
+    <footer>
+        <p class="footertext">&copy; 2023 Customer Survey Form. All Rights Reserved | Design by <a href=""
+                class="link">W3Layouts</a></p>
+    </footer>
+
+    <script>
+        const form = document.getElementById("surveyForm");
+        const popup = document.getElementById("popup");
+        const popupData = document.getElementById("popupData");
+        const popupClose = document.getElementById("popupClose");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Validate the form
+            if (form.checkValidity()) {
+                // Display submitted data in a popup
+                const formData = new FormData(form);
+                let content = "";
+                for (const pair of formData.entries()) {
+                    content += `<strong>${pair[0]}:</strong> ${pair[1]}<br>`;
+                }
+                popupData.innerHTML = content;
+                popup.style.display = "flex";
+                form.reset();
+            } else {
+                alert("Please fill in all required fields.");
+            }
+        });
+
+        popupClose.addEventListener("click", function () {
+            popup.style.display = "none";
+        });
+    </script>
+</body>
+
+</html>
